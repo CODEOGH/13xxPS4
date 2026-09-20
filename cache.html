@@ -1,0 +1,62 @@
+<html manifest="cache.appcache">
+<head>
+<title>PS4 13.xx Exploit By OGH</title>
+<style>
+body {
+    background: #0d0e15 url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ff9d00;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 136, 0, 0.6);
+}
+.info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 24px;
+    font-family: monospace;
+    font-weight: 900;
+    color: #ff8800;
+    transform: translate(-50%, -50%);
+    background: rgba(10, 11, 16, 0.88);
+    padding: 25px 40px;
+    border-radius: 8px;
+    border: 1px solid #ff5500;
+    box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
+    letter-spacing: 1px;
+}
+</style>
+<script>
+history.replaceState(null, null, 'index.html');
+var histlength = history.length;
+history.go(-histlength);
+
+function DLProgress(e) {
+    var pct = Math.round(e.loaded / e.total * 100);
+    // Affichage en orange néon avec style d'installation propre à OGH
+    msgs.innerHTML = "OGH &middot; Installing ... <span style='color:#00ff66; text-shadow: 0 0 10px #00ff66;'>" + pct + "%</span>";
+}
+
+function DisplayCacheProgress() {
+    setTimeout(function () {
+        msgs.innerHTML = "OGH &middot; <span style='color:#00ff66; text-shadow: 0 0 10px #00ff66;'>Cache OK</span>";
+    }, 2000);
+    setTimeout(function () {
+        location.reload();
+    }, 3000);
+}
+
+window.applicationCache.addEventListener("progress",    DLProgress,           false);
+window.applicationCache.oncached     = function (e) { DisplayCacheProgress(); };
+window.applicationCache.onupdateready = function (e) { DisplayCacheProgress(); };
+</script>
+</head>
+<body>
+<div id="msgs" class="info">OGH &middot; Initializing Cache...</div>
+</body>
+</html>
